@@ -2,6 +2,7 @@
 import { ObjectId } from 'mongodb';
 import { dateAgo } from '../../helpers/calculate-funct';
 import { connectDatabse, getAllDocuments, insertData } from '../../helpers/db-utils';
+import axios from 'axios';
 
 
 // MongoClient
@@ -16,23 +17,12 @@ async function handler(req,res) {
              launchdate, listingstatus, contractaddress, 
              description,websitelink, twitterlink, chartlink, redditlink, discordlink, telegramlink,captcha }  = req.body;
 
+            
+
              if(!captcha || captcha===undefined||captcha===null){
                 return res.json({message:"Captcha Failed"}); 
              } 
-     
-             //Secret Key
-     
-             const secKey=process.env.GOOGLE_APP_SECRET_KEY;
-             console.log("dd",secKey);
-             const verifyURL= `https://www.google.com/recaptcha/api/siteverify?secret=${secKey}&response=${captcha}$remoteip=${req.connection.remoteAddress}`;
-     
-             //make request
-     
-             const body = await fetch(verifyURL).then(res => res.json());
-     
-             // If not successful
-             if (body.success !== undefined && !body.success){
-             return res.json({ success: false, msg: 'Failed captcha verification' });}
+
              let valserver=false;
              if(listingstatus==='presale' && contractaddress.trim()===''){
                 valserver=true;
@@ -44,7 +34,7 @@ async function handler(req,res) {
                 valserver=false;
              }
      
-             if(valserver===true){
+             // check required user input
                 if(!coinname ||!coinname.trim()===''
                 ||!coinsymbol||!coinsymbol.trim()===''
                 ||!networkchain||!networkchain.trim()===''
@@ -52,10 +42,15 @@ async function handler(req,res) {
                 ||!listingstatus||!listingstatus.trim()==='' 
                 ||!description||!description.trim()===''
                  ) {
-                   res.status(422).json({message:"Input Invalid"})
-                   client.close();
-                   return;
-                 } else {
+                    return res.status(422).json({message:"Input Invalid"})
+                    } 
+
+
+                    //console.log("BBB",valserver);
+              // check listing status and contract address      
+                if(valserver===false){    
+                    return res.status(422).json({message:"Listing Status and Contract address conflict"})
+                }
    
                    const  newCoin= {
                        coinimage,    
@@ -78,37 +73,59 @@ async function handler(req,res) {
                        activateCoin:false,
                        votes:500,
                        daysago:dateAgo(launchdate),
-                   }        
-           try{
-               // client = await MongoClient.connect('mongodb+srv://chandra:3GXvlZhcibsu3sKj@cluster0.onchbsj.mongodb.net/coindata?retryWrites=true&w=majority');
-               client = await connectDatabse('coindata');
-               res.status(201).json({message:'ok'})
+                   }    
+                   
+                   
+                   const secKey=process.env.GOOGLE_APP_SECRET_KEY;
+                   try{
+                    let result = await axios({
+                        method: 'post',
+                        url: 'https://www.google.com/recaptcha/api/siteverify',
+                        params: {
+                            secret: secKey,
+                            response: req.body.captcha
+                        }
+                    });
               
-           }catch {
-               res.status(201).json({message:'denied'})
-               return
-           }
-       
-           try {
-               // const db=client.db();
-               // const result = await db.collection('coinlist').insertOne(newCoin);
-               const result = insertData(client,'coinlist', newCoin)
-               res.status(201).json({message:'added'})
-       
-           } catch {
-               res.status(500).json({message:'data not inserted'})
-               
-           }
+                
+                    let data = result.data || {};
+                    if(!data.success){
+                        throw({
+                            success: false,
+                            error: 'response not valid'
+                        })
+                    } else if(data.success){
    
-                 }
-             } else {
-                res.status(500).json({message:"if listing status 'presale' omit contract address info or if 'listed' contract address info is mandatory"})
-             }
-          
+                        try{
+                          client = await connectDatabse('coindata');
+                        }catch {
+                            return res.status(201).json({message:'denied'});
+                        }
+                    
+                        try {
+                            // const db=client.db();
+                            // const result = await db.collection('coinlist').insertOne(newCoin);
+                            //console.log("nnn", newCoin);
+                            await insertData(client,'coinlist', newCoin);
+                            res.status(201).json({message:'added'})
+                    
+                        } catch {
+                            res.status(500).json({message:'data not inserted'})
+                            
+                        }
 
-    client.close();
+
+                       client.close();
+                     }
+                }catch(err){
+                    // console.log(err);
+                    // throw err.response ? err.response.data : {success: false, error: 'captcha_error'}
+                    res.status(422).json({success: false, error: 'captcha_error'})
+                }
  
  }
+
+
 
  if(req.method==='GET'){
     try{

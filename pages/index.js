@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import CoinList from '../components/coinlist/coin-list';
 import PaginatedItems from '../components/coinlist/pagination';
-import AutoPlay from '../components/coinlist/slider-image';
+
 import Image from 'next/image';
 import Slideer from '../components/coinlist/slider-akash'
 import Script from 'next/script';
@@ -140,7 +140,7 @@ export default  function Home() {
       } else if (pno==="procoin"){
         setPromoVote(true);
       }
-      
+       console.log(data);
       data.message==='added' ? console.log("Data Added"): console.log("Data not Added")});
     setCount(count+1)
     

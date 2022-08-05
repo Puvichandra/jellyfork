@@ -1,6 +1,6 @@
 
 import { ObjectId } from 'mongodb';
-//import sha1 from sha1;
+import axios from  'axios';
 import { connectDatabse,  insertData } from '../../helpers/db-utils';
 
 
@@ -17,21 +17,6 @@ async function handler(req,res) {
              if(!captcha || captcha===undefined||captcha===null){
                 return res.json({message:"Captcha Failed"}); 
              } 
-     
-             //Secret Key
-     
-             const secKey=process.env.GOOGLE_APP_SECRET_KEY;
-             const verifyURL= `https://www.google.com/recaptcha/api/siteverify?secret=${secKey}&response=${captcha}$remoteip=${req.connection.remoteAddress}`;
-     
-             //make request
-     
-             const body = await fetch(verifyURL).then(res => res.json());
-     
-             // If not successful
-             if (body.success !== undefined && !body.success){
-             return res.json({ success: false, msg: 'Failed captcha verification' });}
-
-             //console.log("body",req.body)
      
 
              if(!adposition ||!adposition.trim()===''
@@ -55,34 +40,53 @@ async function handler(req,res) {
                     adlink,
                    
                 }        
-        try{
-            // client = await MongoClient.connect('mongodb+srv://chandra:3GXvlZhcibsu3sKj@cluster0.onchbsj.mongodb.net/coindata?retryWrites=true&w=majority');
-            client = await connectDatabse('coindata');
-            res.status(201).json({message:'ok'})
+
+                const secKey=process.env.GOOGLE_APP_SECRET_KEY;
+                try{
+                 let result = await axios({
+                     method: 'post',
+                     url: 'https://www.google.com/recaptcha/api/siteverify',
+                     params: {
+                         secret: secKey,
+                         response: req.body.captcha
+                     }
+                 });
            
-        }catch {
-            res.status(201).json({message:'denied'})
-            return
+             
+                 let data = result.data || {};
+                 if(!data.success){
+                     throw({
+                         success: false,
+                         error: 'response not valid'
+                     })
+                 } else if(data.success){
+
+                    try{
+                        
+                        client = await connectDatabse('coindata');
+                        res.status(201).json({message:'ok'})
+                       
+                    }catch {
+                        return res.status(201).json({message:'denied'})
+                     }
+                
+                    try {
+                        // const db=client.db();
+                        // const result = await db.collection('coinlist').insertOne(newCoin);
+                        const result = insertData(client,'adlist', newad)
+                        res.status(201).json({message:'added'})
+                
+                    } catch {
+                        res.status(500).json({message:'data not inserted'});
+                    }
+                    client.close();
+                  }
+             }catch(err){
+                 // console.log(err);
+                 // throw err.response ? err.response.data : {success: false, error: 'captcha_error'}
+                 res.status(422).json({success: false, error: 'captcha_error'})
+             }
         }
-    
-        try {
-            // const db=client.db();
-            // const result = await db.collection('coinlist').insertOne(newCoin);
-            const result = insertData(client,'adlist', newad)
-            res.status(201).json({message:'added'})
-    
-        } catch {
-            res.status(500).json({message:'data not inserted'})
-            
-        }
-
-              }
-
-
-            
-
-    client.close();
- 
  }
 
  if(req.method==='GET'){

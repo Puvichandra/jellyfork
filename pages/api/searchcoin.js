@@ -15,8 +15,8 @@ if(req.method==='GET'){
     try{
         client=await connectDatabse('coindata');
     } catch {
-        res.status(500).json({message:"Database connection failed"})
-        return;
+        return res.status(500).json({message:"Database connection failed"});
+        
     }
     
     try {
@@ -24,7 +24,7 @@ if(req.method==='GET'){
         
         const documents = await db.collection('coinlist').find({}, {projection:{"coinname":1}} ).sort({"coinname":-1}).toArray();
         res.status(201).json({coinlist:documents})
-       //console.log("Chandra",documents)
+       
     } catch {
         res. status(500).json({message:'Unable to get documents'})
     }

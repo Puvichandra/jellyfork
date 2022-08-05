@@ -29,6 +29,7 @@ async function handler(req,res) {
        //console.log(documents);
         res. status(200).json({message:'ok'})
        documents.map( (coin)=>{
+        
             let price=0;
             let totsupply=0;
             let mc=0;

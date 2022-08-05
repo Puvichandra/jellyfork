@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import Button from '../ui/button'
-import Image from 'next/image'
+import Button from '../ui/button';
+// import Image from 'next/image';
 // import { ImageUpload } from '../ui/upload-preview'
 import { useEffect, useRef, useState } from "react";
-import { BallTriangle} from  'react-loader-spinner'
-import Router from 'next/router';
-import  Axios  from "axios";
+// import { BallTriangle} from  'react-loader-spinner';
+// import Router from 'next/router';
 import ReCAPTCHA from "react-google-recaptcha";
+import axios from 'axios';
 
 
 
@@ -79,10 +79,11 @@ function AdvertiseAddcomp(){
         const formData = new FormData();
         formData.append("file", imagecloud);
         formData.append("upload_preset", "akcblzz9");
-        process.env.
+       
+  
         
-        //Axios.post("http://api.cloudinary.com/v1_1/dp9yoy7js/image/upload", formData)
-        Axios.post(process.env.NEXT_PUBLIC_CLOUD_URL, formData)
+        axios.post(process.env.NEXT_PUBLIC_CLOUD_URL,
+          formData)
         .then((response)=>
        { dd.adimage=response.data.secure_url;
        

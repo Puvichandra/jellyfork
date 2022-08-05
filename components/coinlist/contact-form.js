@@ -38,7 +38,7 @@ function ContactFormComponent(){
         }
 
         const messageNotsent=(message)=>{
-          alert(message);
+          alert("Message Not Sent");
           setIsLoading(false); 
           setNotify(true)
         }
@@ -46,6 +46,7 @@ function ContactFormComponent(){
 
         const onSubmit = dd => {
            dd.captcha=captcha;
+          
             setIsLoading(true)
             fetch('../api/contact/contactapi', {
               method:'POST',

@@ -15,9 +15,9 @@ const slider = (props) => {
     <div className={classes.slider}>
         <div className={classes.slide__track}>
 
-        {nftthreedata.map((nft)=>(
-            <Link href={nft.nftlink}><a >
-            <div className={classes.slide}>
+        {nftthreedata.map((nft,index)=>(
+            <Link key={index}  href={nft.nftlink}><a >
+            <div  className={classes.slide}>
    
                 <Image className="object-center" src={nft.nftimage} alt="dog"   height={350} width={334} />
                 <h3>{nft.nftname}</h3>

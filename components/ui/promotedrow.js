@@ -65,7 +65,7 @@ function PromotedRow(props){
     sitekey= {skey}
     size='compact'
     theme="dark"
-    onChange={(e)=>{setismodalopen(false);setIsLoading(false);props.evote(props.id,e,"procoin"); props.votechange(false);window.grecaptcha.reset();}}
+    onChange={(e)=>{setismodalopen(false);setIsLoading(false);props.evote(props.id,e,"procoin"); props.votechange(false);}}
   />
     </ReactModal>
     
