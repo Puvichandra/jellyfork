@@ -11,7 +11,7 @@ import { ThreeDots} from  'react-loader-spinner'
 
 
 
-function PaginatedItems(props) {
+function SecPaginatedItems(props) {
     
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
@@ -35,6 +35,7 @@ function PaginatedItems(props) {
     setIsLoading(false);
     setcaption('');
     
+    
   } else {
     setIsLoading(true);
     setcaption('Loading Top Coins List ...')
@@ -49,9 +50,9 @@ function PaginatedItems(props) {
       
       //const newOffset = (event.selected * itemsPerPage) % promotedCoin.length;
       const newOffset = (event.selected * itemsPerPage) % promotedCoin.length;
-      // console.log(
-      //   `User requested page number ${event.select}, which is offset ${newOffset} pagecount ${pageCount} itemperpage ${itemsPerPage} data length ${promotedCoin.length}`
-      // );
+    //   console.log(
+    //     `User requested page number ${event.select}, which is offset ${newOffset} pagecount ${pageCount} itemperpage ${itemsPerPage} data length ${promotedCoin.length}`
+    //   );
       setItemOffset(newOffset);
      
     };
@@ -68,11 +69,12 @@ function PaginatedItems(props) {
    
   
    <div className="py-1">
-   <div className=" text-2xl lg:text-4xl  text-txtborderColor font-poppins pl-10 py-4 inline">
+   <div className=" text-2xl lg:text-4xl  text-txtborderColor font-poppins pl-10 py-6 inline">
    {caption}
    </div>
    {isLoading?<div className="inline-block mt-10 ml-10"><ThreeDots color='white' height="50" width="50" ariaLabel='loading'/></div>:null}
    </div>
+   
 
   
   
@@ -147,4 +149,4 @@ function PaginatedItems(props) {
 
   
 
-  export default PaginatedItems;
+  export default SecPaginatedItems;

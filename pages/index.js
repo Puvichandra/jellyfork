@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import CoinList from '../components/coinlist/coin-list';
 import PaginatedItems from '../components/coinlist/pagination';
+import SecondPage from '../components/coinlist/secondpagination';
 
 import Image from 'next/image';
 import Slideer from '../components/coinlist/slider-akash'
@@ -29,6 +30,7 @@ export default  function Home() {
   const [midright,setMidRight]=useState({});
   const [bottombanner,setBottomBanner]=useState({});
   const [nftCurrentData, setNftCurrentData]=useState([]);
+  const [allTimedata, setAllTimeData] = useState(false);
  
   
   
@@ -105,7 +107,7 @@ export default  function Home() {
    fetchadData();
    //alert(count);
 
-  },[count, isVote])
+  },[count, isVote,allTimedata])
 
   
 
@@ -233,7 +235,7 @@ const getData=(dd)=>{
         <title>Jellyfork</title>
         <meta name="description" content="Cryptocurrency ranking based on voting and Jellyfork offers website
 and Dapp development services" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" />
 
         <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap"
@@ -278,11 +280,32 @@ and Dapp development services" />
      {bottombanner.adimage?<Image  src={bottombanner.adimage} alt="no Image" width={900} height={90}/>:null}
         </div>
      
-      <div className='mt-20'>
-       <PaginatedItems  data={data} todayData={todaydata} evote={updatevote} voteloading={isVote} votechange={setVote} backdata={ispagedata} setPageData={setPageData}/> 
+    {/* Paginated items for Today Data*/} 
+   
+      <div  className="max-w-6xl rounded-2xl overflow-hidden  mx-auto   bg-lightgrey " style={{boxShadow:"rgba(0, 0, 0, 0.1) 0px 4px 12px"}}>
+      
+      <div className=" text-2xl lg:text-4xl  text-txtborderColor font-poppins pl-10 py-4 ">
+     {allTimedata?"All Time Top Coins":"Today Top Coins"}
       </div>
 
-    
+      {allTimedata ? <button  className="border-2 border-txtborderColor rounded-2xl px-10 font-poppins text-md md:text-2xl inline mx-8 text-lightgrey bg-txtborderColor mt-5" 
+     onClick={()=>{setAllTimeData(true);}}> All Time</button> : <button  className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-10 font-poppins text-md md:text-2xl inline mx-8" 
+     onClick={()=>{setAllTimeData(true);}}> All Time</button>  }
+
+  {!allTimedata ? <button className="border-2 border-txtborderColor  rounded-2xl px-10 font-poppins text-md md:text-2xl inline text-lightgrey bg-txtborderColor mt-5"  onClick={()=>{props.setPageData(true);}}> Today</button> :
+<button className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-10 font-poppins text-md md:text-2xl inline"  onClick={()=>{setAllTimeData(false);}}> Today</button> }
+
+
+
+{allTimedata ? 
+      <div className='mt-5'>
+       <PaginatedItems  data={data}  evote={updatevote} voteloading={isVote} votechange={setVote} backdata={ispagedata} setPageData={setPageData} firstpage={0} /> 
+      </div>
+      :
+      <div>
+      <SecondPage  data={todaydata} evote={updatevote} voteloading={isVote} votechange={setVote} backdata={ispagedata} setPageData={setPageData} firstpage={0} /> 
+       </div>}
+      </div>
     </div>
 
     

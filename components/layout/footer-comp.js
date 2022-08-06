@@ -16,7 +16,7 @@ function FooterComponent(){
                    
                         
                         <div className="lg:block w-4/6">
-                            <div className=" flex  flex-rows items-center ">
+                            <div className=" flex  flex-rows items-center  ">
                             
                                 {/* <Link href="/"><a className="flex-shrink-0" >
                                 <Image className='relative z-30 inline object-cover w-12 h-12 border-20 border-white rounded-full' src="/img/main1.jpg" alt="Workflow" width={70} height={70}/>
@@ -64,7 +64,7 @@ function FooterComponent(){
 
                             
                         </div>
-                        <div>
+                        <div className='pb-4'>
                                     <p className=' ml-2 text-sm font-poppins text-txtborderColor pt-4'>@2022 JellyFork. All Rights Reserved</p>
                                   </div>
                     </div>

@@ -39,7 +39,7 @@ function AllTimeData(){
 
 <div className="py-4">
 <div className=" text-2xl lg:text-4xl  text-txtborderColor font-poppins pl-10 py-4 inline">
-  Top Coins Today
+  {/* Top Coins Today */}
 </div>
 </div>
 

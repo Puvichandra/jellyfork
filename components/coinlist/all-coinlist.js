@@ -17,6 +17,7 @@ function AllCoinList(props){
     }
     const promotedCoin=props.data;
     
+    
     return <div className="py-5">
    
 <div  className="max-w-sm rounded-2xl ">
@@ -37,7 +38,10 @@ function AllCoinList(props){
       <div className="overflow-y-auto">
       <ul>
       
-      {promotedCoin.map((coin)=><li key={coin._id} className="text-txtborderColor font-poppins font-bold py-2 text-lg " onClick= {()=>{props.evote(coin._id); return false;}}>{coin.coinname}</li> )}
+      {promotedCoin.map((coin)=><li key={coin._id}  
+      className={`${coin.activateCoin? "text-txtborderColor":"text-red-600"} font-poppins font-bold py-2 text-lg` } 
+
+      onClick= {()=>{props.evote(coin._id); return false;}}>{coin.ispromoted? `${coin.coinname}☀️`:coin.coinname}</li> )}
      
       
       </ul>

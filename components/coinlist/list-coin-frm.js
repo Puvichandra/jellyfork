@@ -77,8 +77,6 @@ if(validateval===true){
     const formData = new FormData();
     formData.append("file", imagecloud);
     formData.append("upload_preset", "akcblzz9");
-    
-    //Axios.post("http://api.cloudinary.com/v1_1/dp9yoy7js/image/upload", formData)
     Axios.post(process.env.NEXT_PUBLIC_CLOUD_URL, formData)
     .then((response)=>
    { dd.coinimage=response.data.secure_url;
@@ -355,13 +353,8 @@ const getDatajson=()=>{
               type="text"
               placeholder="Website Link"
              
-              {...register("websitelink",{ required:{ value:true, message:'Url is required' }, pattern:{ value:/^((ftp|http|https):\/\/)?www\.([A-z]+)\.([A-z]{2,})/, message:'Please enter a valid url'}})}
-            
-            />
-            <p className="text-red-400">
-               {errors.websitelink?.type==="pattern" && "URL is Required"}
-               
-              </p>
+              {...register("websitelink",{ required:{ value:false,}})}
+                   />
             </div>
            </div>
 

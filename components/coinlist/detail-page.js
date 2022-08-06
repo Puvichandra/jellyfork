@@ -46,9 +46,9 @@ function DetailPageCoin(props){
   />
     </ReactModal>
 
-<div className="w-full md:w-11/12 2xl:w-8/12  mx-auto py-20 flex flex-row flex-wrap gap-1" >
+<div className="w-full h-full  md:w-11/12 2xl:w-8/12  mx-auto  md:py-24 lg:py-24 xl:py-14 2xl:py-40 flex flex-row flex-wrap justify-center gap-1" >
 {/* <div  className="w-full  md:w-3/6 2xl:px-5 rounded-2xl overflow-hidden shadow-md shadow-txtborderColor mx-auto  border-solid border-2 border-txtborderColor bg-lightgrey  inline-block mr-2 "> */}
-<div  className="w-full  md:w-3/6 2xl:px-5 rounded-2xl overflow-hidden  mx-auto   bg-lightgrey  inline-block mr-2 " style={{ boxShadow:"rgba(0, 0, 0, 0.1) 0px 4px 12px"}}>
+<div  className="w-full h-auto  md:w-3/6 2xl:px-5 rounded-2xl overflow-hidden  mx-auto  py-2  bg-lightgrey  inline-block md:mr-2 " style={{ boxShadow:"rgba(0, 0, 0, 0.1) 0px 4px 12px"}}>
 <div className='p-2'>
 <div className="inline-block px-3" >
     <Image className=' rounded-full object-center' src={props.data[0].coinimage} alt="nftone" width={100} height={100} />
@@ -70,22 +70,22 @@ function DetailPageCoin(props){
 <div className="flex flex-row flex-wrap py-5  justify-evenly">
 
 {props.data[0].twitterlink?<div className='basis-1 py-2 '>
-<a type='button'  className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-5 font-poppins text-lg inline mx-2 "> Twitter</a>
+<Link href={props.data[0].twitterlink} ><a target="_blank" rel="noopener noreferrer" type='button'  className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-5 font-poppins text-lg inline mx-2 "> Twitter</a></Link>
 </div> :null}
 
 {props.data[0].websitelink?
 <div className='basis-1 py-2 pl-5 2xl:pl-0'>
-<a href={props.data[0].websitelink} type='button' target="_blank" rel="noopener noreferrer"  className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-5 font-poppins text-lg inline mx-2" > Website</a>
+<Link href={props.data[0].websitelink}><a target="_blank" rel="noopener noreferrer" type='button'   className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-5 font-poppins text-lg inline mx-2" > Website</a></Link>
 </div>:null}
 
 {props.data[0].telegramlink?
 <div className='basis-1 py-2 '>
-<a type='button' href={props.data[0].telegram} className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-5 font-poppins text-lg inline mx-2 "> Telegram</a>
+<Link href={props.data[0].telegramlink}><a target="_blank" rel="noopener noreferrer" type='button'  className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-5 font-poppins text-lg inline mx-2 "> Telegram</a></Link>
 </div>:null}
 
 {props.data[0].facebooklink?
 <div className='basis-1 py-2 pl-0 lg:pl-8'>
-<a type='button' href={props.data[0].facebook} className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-5 font-poppins text-lg inline mx-2"> Facebook</a>
+<Link href={props.data[0].facebooklink}><a target="_blank" rel="noopener noreferrer" type='button' href={props.data[0].facebook} className="border-2 border-txtborderColor text-txtborderColor rounded-2xl px-5 font-poppins text-lg inline mx-2"> Facebook</a></Link>
 </div>:null}
 </div>
 </div>
