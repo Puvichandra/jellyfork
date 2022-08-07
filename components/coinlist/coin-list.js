@@ -23,6 +23,8 @@ function CoinList(props){
     //   setvote(true);
     // }
 
+    //console.log("pkk", props)
+
     useEffect(()=>{
      
      if(promotedCoin.length>0) {
@@ -93,7 +95,7 @@ function CoinList(props){
           </thead>
           <tbody>
             
-            {promotedCoin.map((coin)=><PromotedRow key={coin._id} id={coin._id} rank={rank++} coinname={coin.coinname}  price={coin.price} mcap={coin.marketcap} launchdate={coin.daysago} vote={coin.votes} evote={props.evote} voteloading={props.voteloading} votechange={props.votechange}/>)}
+            {promotedCoin.map((coin)=><PromotedRow key={coin._id} id={coin._id} rank={rank++} coinname={coin.coinname}  price={coin.price} mcap={coin.marketcap} launchdate={coin.launchdate} vote={coin.votes} evote={props.evote} voteloading={props.voteloading} votechange={props.votechange}/>)}
 
 
          

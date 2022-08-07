@@ -58,29 +58,27 @@ async function handler(req,res) {
 
                     try{
                         client = await connectDatabse('coindata');
-                        res.status(201).json({message:'ok'})
-                       
                     }catch {
                         return res.status(201).json({message:'denied'})
                      }
                 
                     try {
-                        const result = insertData(client,'nftlist', newNft)
+                        await  insertData(client,'nftlist', newNft)
                         res.status(201).json({message:'added'})
                 
                     } catch {
                         res.status(500).json({message:'data not inserted'})
-                        
-                    }
+                      }
                     client.close();
                   }
-             }catch(err){
-                 // console.log(err);
-                 // throw err.response ? err.response.data : {success: false, error: 'captcha_error'}
-                 res.status(422).json({success: false, error: 'captcha_error'})
+             }
+             catch(err){
+                   res.status(422).json({success: false, error: 'captcha_error'})
              }
  }
 }
+
+
 
  if(req.method==='GET'){
     try{
@@ -94,9 +92,8 @@ async function handler(req,res) {
         const db=client.db();
         
         const documents = await db.collection('nftlist').find({"active":true}, {projection:{"nftimage":1, "nftname":1, "description":1, "nftlink":1}} ).sort({"votes":-1}).toArray();
-        //const promoteddocument = await db.collection('nftlist').find({ispromoted:true , ispromoted:"true"}, {projection:{"coinname":1, "marketcap":1, "price":1, "votes":1, "daysago":1, "ispromoted":1}} ).sort({"votes":-1}).toArray();
         res.status(201).json({nftlist:documents})
-       //console.log("Chandra",promoteddocument)
+       
     } catch {
         res. status(500).json({message:'Unable to get documents'})
     }

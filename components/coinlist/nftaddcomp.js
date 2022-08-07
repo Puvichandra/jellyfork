@@ -32,9 +32,7 @@ function Nftaddcomp(){
    
     const { register,   formState:{errors}, handleSubmit, } = useForm({
     mode:'onTouched',
-    defaultValues:{
-    nftlink:'https://'
-    }
+   
     });
 
    
@@ -43,7 +41,7 @@ function Nftaddcomp(){
     formData.append("file", imagecloud);
     formData.append("upload_preset", "akcblzz9");
     
-    //Axios.post("http://api.cloudinary.com/v1_1/dp9yoy7js/image/upload", formData)
+   
     Axios.post(process.env.NEXT_PUBLIC_CLOUD_URL, formData)
     .then((response)=>
    { 
@@ -61,7 +59,7 @@ function Nftaddcomp(){
     const formData = new FormData();
     formData.append("file", imagecloud);
     formData.append("upload_preset", "akcblzz9");
-    Axios.post("http://api.cloudinary.com/v1_1/dp9yoy7js/image/upload", formData)
+    Axios.post(process.env.NEXT_PUBLIC_CLOUD_URL, formData)
     .then((response)=>
    { dd.nftimage=response.data.secure_url;
    
@@ -247,11 +245,11 @@ const updateDbase=(dd)=>{
               type="text"
               placeholder="Website Link"
              
-              {...register("nftlink",{ required:{ value:true, message:'Url is required' }, pattern:{ value:/^((ftp|http|https):\/\/)?www\.([A-z]+)\.([A-z]{2,})/, message:'Please enter a valid url'}})}
+              {...register("nftlink",{ required:{ value:true}})}
             
             />
             <p className="text-red-400">
-               {errors.nftlink?.type==="pattern" && "URL is Required"}
+               {errors.nftlink?.type==="required" && "URL is Required"}
                
               </p>
             </div>

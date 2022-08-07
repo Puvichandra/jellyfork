@@ -22,9 +22,9 @@ function PaginatedItems(props) {
     const [isvoteloading, setvoteloading]= useState(true);
     const [eventselect, setEventSelect]=useState(0);
     const itemsPerPage=6;
-    let promotedCoin=props.data;
+    const promotedCoin=props.data;
     let rank=itemOffset+1;
-
+    
 
    useEffect(()=>{
   const endOffset = itemOffset + itemsPerPage;
@@ -107,7 +107,7 @@ function PaginatedItems(props) {
              </thead>
              <tbody>
                
-               {currentItems.map((coin,index)=><TableRow key={index} id={coin.id} rank={rank++} coinname={coin.coinname}  price={coin.price} mcap={coin.mcap} launchdate={coin.daysago} vote={coin.vote} evote={props.evote} voteloading={props.voteloading} votechange={props.votechange}/>)}
+               {currentItems.map((coin,index)=><TableRow key={index} id={coin.id} rank={rank++} coinname={coin.coinname}  price={coin.price} mcap={coin.mcap} launchdate={coin.launchdate} vote={coin.vote} evote={props.evote} voteloading={props.voteloading} votechange={props.votechange}/>)}
 
                
    

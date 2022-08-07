@@ -71,13 +71,14 @@ export default  function Home() {
             price:data.coinlist[key].price,
             mcap:data.coinlist[key].marketcap,
             vote:data.coinlist[key].votes,
-            daysago:data.coinlist[key].daysago
+            launchdate:data.coinlist[key].launchdate,
            }
         )
       } 
 
       SetData(promotedCoin);
       setCount(count+1); 
+     // console.log("pp",data.promoted);
       SetPromotedData(data.promoted)});
       
    
@@ -129,7 +130,7 @@ useEffect(()=>{
       } else if (pno==="procoin"){
         setPromoVote(true);
       }
-       console.log(data);
+       //console.log(data);
       data.message==='added' ? console.log("Data Added"): console.log("Data not Added")});
     setCount(count+1)
     
@@ -151,7 +152,8 @@ useEffect(()=>{
           //vote:data.indcoin[key].coinlistdoc[0].votes,
           vote:data.indcoin[key].TotalVote,
          // data.indcoin[key]._id
-          daysago:data.indcoin[key].coinlistdoc[0].daysago
+          daysago:data.indcoin[key].coinlistdoc[0].daysago,
+          launchdate:data.indcoin[key].coinlistdoc[0].launchdate,
          }
       )
     } 

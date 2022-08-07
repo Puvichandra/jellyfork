@@ -39,7 +39,7 @@ async function handler(req,res) {
               
         ]).toArray();
        
-        const promoteddocument = await db.collection('coinlist').find({ispromoted:true , ispromoted:"true"}, {projection:{"coinname":1, "marketcap":1, "price":1, "votes":1, "daysago":1, "ispromoted":1}} ).sort({"votes":-1}).toArray();
+        const promoteddocument = await db.collection('coinlist').find({ispromoted:true , ispromoted:"true"}, {projection:{"coinname":1, "marketcap":1, "price":1, "votes":1, "launchdate":1, "ispromoted":1}} ).sort({"votes":-1}).toArray();
        // console.log("Chandra",documents)
         res.status(201).json({indcoin:documents, promoted:promoteddocument})
        

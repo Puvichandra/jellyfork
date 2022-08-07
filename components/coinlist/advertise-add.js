@@ -247,13 +247,10 @@ function AdvertiseAddcomp(){
               type="text"
               placeholder="Ad Web Link"
              
-              {...register("adlink",{ required:{ value:true, message:'Url is required' }, pattern:{ value:/^((ftp|http|https):\/\/)?www\.([A-z]+)\.([A-z]{2,})/, message:'Please enter a valid url'}})}
+              {...register("adlink",{ required:{ value:false, }})}
             
             />
-            <p className="text-red-400">
-               {errors.adlink?.type==="pattern" && "URL is Required"}
-               
-              </p>
+    
             </div>
            </div>
 

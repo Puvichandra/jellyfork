@@ -24,11 +24,17 @@ async function handler(req,res) {
     
     try {
         const db=client.db();
-   
-       const documents = await db.collection('coinlist').find({activateCoin:true,activateCoin:"true",listingstatus:'listed'}, {projection:{"coinname":1, "marketcap":1, "price":1, "contractaddress":1,"divideval":1}} ).sort({"votes":-1}).toArray();
-       //console.log(documents);
-        res. status(200).json({message:'ok'})
-       documents.map( (coin)=>{
+        let count=1
+       const documents = await db.collection('coinlist').find({activateCoin:true,activateCoin:"true",listingstatus:'listed',divideval:{$gte:1},}, {projection:{"coinname":1, "marketcap":1, "price":1, "contractaddress":1,"divideval":1}} ).sort({"votes":-1}).toArray();
+      // console.log(documents.length);
+        //res. status(200).json({message:'ok'})
+
+    
+       documents.map( (coin)=> { 
+      
+        
+         
+       
         
             let price=0;
             let totsupply=0;
@@ -36,7 +42,7 @@ async function handler(req,res) {
             let deadcoin=0;
             let dval=0;
             let csupply=0;
-            //console.log(coin.contractaddress);
+            
             const urlOne="https://api.pancakeswap.info/api/v2/tokens/"+coin.contractaddress;
             const urlTwo="https://api.bscscan.com/api?module=stats&action=tokenCsupply&contractaddress="+coin.contractaddress + "&apikey="+apikey;
             const urlThree="https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress="+ coin.contractaddress + "&address="+ caddress + "&tag=latest&apikey=" + apikey;
@@ -45,10 +51,16 @@ async function handler(req,res) {
             try {
                 fetch(urlOne).then(res=>res.json()).then((data)=>{
                     //console.log("first",data);
-                    price=parseFloat(data.data.price);
+                    try{
+                        price=parseFloat(data.data.price);
+                    } catch {
+                        price=0;
+                    }
+                    
                     //console.log("p",price);
-
+                    
                     try {
+                        
                         fetch(urlTwo).then(res=>res.json()).then((data)=>{
                             //console.log("second",data);
                             totsupply=data.result;
@@ -72,7 +84,7 @@ async function handler(req,res) {
                                         res.status(500).json({ error: 'failed to load data' })
                                     }
                             
-                                })                                     
+                                })                                    
                                 } catch (err){
                                     client.close();
                                   res.status(500).json({ error: 'failed to load data' })
@@ -139,9 +151,9 @@ async function handler(req,res) {
         //         })
         //         //res.status(201).json({coinli:documents})
         // })
-        
+       
       
-    } )
+    })
 }catch {
         res. status(500).json({message:'Unable to get documents'})
     }
