@@ -35,7 +35,7 @@ export default  function Home() {
   useEffect(()=>{ 
    refetch();
 
-  },[count])
+  },[])
 
 
   if(!isLoading){

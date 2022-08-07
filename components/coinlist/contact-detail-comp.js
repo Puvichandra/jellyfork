@@ -59,7 +59,7 @@ function ContactDetailForm(props){
 
 useEffect(()=>{
     getContactMessage();
-} ,[props.data._id])
+} ,[])
 
 
 

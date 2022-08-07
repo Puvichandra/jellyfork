@@ -51,11 +51,8 @@ export default  function Home() {
       } else if(data.adlist[i].adposition==='bottom-banner'){
         setBottomBanner(data.adlist[i])
       }
-     
-     
+    
     }
-
- 
  })}
 
   const refetch=()=>{
@@ -88,37 +85,27 @@ export default  function Home() {
   }
 
 
- function getColor(innerWidth) {
-    if (innerWidth <= 500) return setsnum(2)
-    if (innerWidth <= 700) return setsnum(3)
-    if (innerWidth <= 800) return setsnum(4)
-    if (innerWidth <= 900) return setsnum(5)
-    if (innerWidth <= 1000) return setsnum(5)
-    if (innerWidth <= 1100) return setsnum(6)
-    return setsnum(6)
-}
+//  function getColor(innerWidth) {
+//     if (innerWidth <= 500) return setsnum(2)
+//     if (innerWidth <= 700) return setsnum(3)
+//     if (innerWidth <= 800) return setsnum(4)
+//     if (innerWidth <= 900) return setsnum(5)
+//     if (innerWidth <= 1000) return setsnum(5)
+//     if (innerWidth <= 1100) return setsnum(6)
+//     return setsnum(6)
+// }
 
+useEffect(()=>{ 
+  fetchadData();
+  getnftData();
+  },[])
 
   useEffect(()=>{ 
-  // refetch();
-   ///console.log("bbb",ispagedata);
-   const slidenumber=getColor(window.innerWidth);
+   
    getData(ispagedata);
-   fetchadData();
-   //alert(count);
+   },[isVote])
 
-  },[count, isVote,allTimedata])
 
-  
-
-//  function updatevote(id){
-//      setVote(false);
-//      fetch('api/votenow/'+id)
-//     .then(res=>res.json())
-//     .then((data)=>{console.log(data);})
-//     setCount(count+1)
-//     setVote(true);
-//   }
 
   function updatevote(id, captcha_response,pno){
     if(pno==="allcoin"){
@@ -197,22 +184,11 @@ const getData=(dd)=>{
     setPageData(true)
    }
 
-  // if(ispagedata){
-  //   Todayvote();
-
-  // } else {
-  //   refetch();
-   
-  // }
   refetch();
   todayVote();
-  getnftData();
+ // getnftData();
   //console.log("fff",data)
 }
-
-
-
-
 
 
   if(!isLoading){
@@ -276,7 +252,7 @@ and Dapp development services" />
     {/* <AutoPlay slidenumber={snum} nftCurrentData={nftCurrentData}/>   */}
     <Slideer nftCurrentData={nftCurrentData} />
 
-    <div className='text-center pt-10'>
+    <div className='text-center py-12'>
      {bottombanner.adimage?<Image  src={bottombanner.adimage} alt="no Image" width={900} height={90}/>:null}
         </div>
      
@@ -314,33 +290,3 @@ and Dapp development services" />
   
 }
 
-//  export async function getServerSideProps(){
-//   let documents;
-//   let client;
- 
-//   try{
-//     client=await connectDatabse('coindata');
-// } catch {
-//   console.log("database connection failed")
-//     return;
-// }
-
-// try {
-//     const db=client.db();
-//     documents = await db.collection('coinlist').find({}).toArray();
-   
-// } catch {
-//     console.log('Unable to get documents')
-// }
-
-// client.close();
-
-// return {
-//   props:{
-//      data:JSON.parse(JSON.stringify(documents))
-//     // data:documents
-//       },
- 
-// };
-
-// }  

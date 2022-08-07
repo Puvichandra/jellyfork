@@ -29,7 +29,7 @@ function ContactPagination(props){
       setpcaption('Loading Messages...')
      }
    
-      },[promotedMsg])
+      },[])
 
 
 

@@ -61,7 +61,7 @@ function AdminConfigPage(){
     
     useEffect(()=>{
       refetch();
-    },[count])
+    },[])
 
 
       if(!isLoading){

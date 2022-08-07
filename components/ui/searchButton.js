@@ -30,10 +30,12 @@ function Search(){
   // }
 
   useEffect(()=>{
+    
     fetch('/api/searchcoin')
     .then(response => response.json())
     .then((data) => {setData(data.coinlist);//console.log(data.coinlist);
   })
+
   },[])
 
  

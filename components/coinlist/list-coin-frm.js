@@ -176,9 +176,6 @@ const getDatajson=()=>{
       setimagePreview (<div className="text-txtborderColor font-poppins text-sm">Select Image</div>);
     }
   
-  
-  
-    
    },[imagedata])
   
     

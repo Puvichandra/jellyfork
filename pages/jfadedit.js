@@ -34,7 +34,7 @@ export default  function Adeditpage() {
   useEffect(()=>{ 
    refetch();
 
-  },[count])
+  },[])
 
 
   if(!isLoading){
