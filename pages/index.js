@@ -206,7 +206,7 @@ const getData=(dd)=>{
 
 
   return (
-    <div className='bg-bodygray'>
+    <div className='bg-bodygray pb-3'>
       <Head>
         <title>Jellyfork</title>
         <meta name="description" content="Cryptocurrency ranking based on voting and Jellyfork offers website
@@ -258,7 +258,7 @@ and Dapp development services" />
      
     {/* Paginated items for Today Data*/} 
    
-      <div  className="max-w-6xl rounded-2xl overflow-hidden  mx-auto   bg-lightgrey " style={{boxShadow:"rgba(0, 0, 0, 0.1) 0px 4px 12px"}}>
+      <div  className="max-w-6xl rounded-2xl overflow-hidden  mx-auto mb-5  bg-lightgrey " style={{boxShadow:"rgba(0, 0, 0, 0.1) 0px 4px 12px"}}>
       
       <div className=" text-2xl lg:text-4xl  text-txtborderColor font-poppins pl-10 py-4 ">
      {allTimedata?"All Time Top Coins":"Today Top Coins"}
@@ -274,7 +274,7 @@ and Dapp development services" />
 
 
 {allTimedata ? 
-      <div className='mt-5'>
+      <div className='mt-5 '>
        <PaginatedItems  data={data}  evote={updatevote} voteloading={isVote} votechange={setVote} backdata={ispagedata} setPageData={setPageData} firstpage={0} /> 
       </div>
       :
