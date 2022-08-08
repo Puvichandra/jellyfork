@@ -107,7 +107,9 @@ function PaginatedItems(props) {
              </thead>
              <tbody>
                
-               {currentItems.map((coin,index)=><TableRow key={index} id={coin.id} rank={rank++} coinname={coin.coinname}  price={coin.price} mcap={coin.mcap} launchdate={coin.launchdate} vote={coin.vote} evote={props.evote} voteloading={props.voteloading} votechange={props.votechange}/>)}
+               {currentItems.map((coin,index)=><TableRow key={index} id={coin.id} rank={rank++} coinname={coin.coinname} 
+                price={coin.price} mcap={coin.mcap} launchdate={coin.launchdate} vote={coin.vote} evote={props.evote}
+                 voteloading={props.voteloading} votechange={props.votechange} networkchain={coin.networkchain} />)}
 
                
    

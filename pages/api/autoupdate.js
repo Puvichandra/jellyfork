@@ -1,7 +1,10 @@
 
+import axios from 'axios';
 import { ObjectId } from 'mongodb';
 import { dateAgo } from '../../helpers/calculate-funct';
 import { connectDatabse, getAllDocuments, insertData } from '../../helpers/db-utils';
+
+
 
 
 // MongoClient
@@ -17,161 +20,117 @@ async function handler(req,res) {
     try{
         client=await connectDatabse('coindata');
     } catch {
-        res.status(500).json({message:"Database connection failed"})
-        return;
-    }
+        console.log("failed")
+        return res.status(500).json({message:"Database connection failed"})
+      }
 
     
     try {
         const db=client.db();
         let count=1
-       const documents = await db.collection('coinlist').find({activateCoin:true,activateCoin:"true",listingstatus:'listed',divideval:{$gte:1},}, {projection:{"coinname":1, "marketcap":1, "price":1, "contractaddress":1,"divideval":1}} ).sort({"votes":-1}).toArray();
-      // console.log(documents.length);
+       const documents = await db.collection('coinlist').find({activateCoin:true,activateCoin:"true",listingstatus:'listed'}, {projection:{"coinname":1, "marketcap":1, "price":1, "contractaddress":1,"divideval":1}} ).sort({"votes":-1}).toArray();
+       //console.log(documents);
         //res. status(200).json({message:'ok'})
 
-    
-       documents.map( (coin)=> { 
-      
-        
-         
-       
-        
-            let price=0;
-            let totsupply=0;
-            let mc=0;
-            let deadcoin=0;
-            let dval=0;
-            let csupply=0;
-            
-            const urlOne="https://api.pancakeswap.info/api/v2/tokens/"+coin.contractaddress;
-            const urlTwo="https://api.bscscan.com/api?module=stats&action=tokenCsupply&contractaddress="+coin.contractaddress + "&apikey="+apikey;
-            const urlThree="https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress="+ coin.contractaddress + "&address="+ caddress + "&tag=latest&apikey=" + apikey;
-
+        for(var i = 0; i < documents.length; i++){
            
-            try {
-                fetch(urlOne).then(res=>res.json()).then((data)=>{
-                    //console.log("first",data);
-                    try{
-                        price=parseFloat(data.data.price);
-                    } catch {
-                        price=0;
-                    }
-                    
-                    //console.log("p",price);
-                    
-                    try {
-                        
-                        fetch(urlTwo).then(res=>res.json()).then((data)=>{
-                            //console.log("second",data);
-                            totsupply=data.result;
-
-                                try {
-                                 fetch(urlThree).then(res=>res.json()).then((data)=>{
-                                  
-                                   // console.log("new",newdata)
-                                    deadcoin=data.result;
-                                    dval=Number(coin.divideval);
-                                    const mcap=(parseFloat(totsupply/dval)-parseFloat(deadcoin/dval))*parseFloat(price);
-                                    mc=numFormatter(mcap);
-                                    //console.log("mc",mc);
-                                   // console.log(db);
-                                    db.collection('coinlist').updateOne({"contractaddress":coin.contractaddress},
-                                    {$set:{"price":price,"marketcap":mc}},{ upsert: false});
-                                    
-                                    return data;})
-                                    } catch (err){
-                                        client.close();
-                                        res.status(500).json({ error: 'failed to load data' })
-                                    }
-                            
-                                })                                    
-                                } catch (err){
-                                    client.close();
-                                  res.status(500).json({ error: 'failed to load data' })
-                                 }
-                    })              
-                
-            } catch (err){
-                client.close();
-                res.status(500).json({ error: 'failed to load data' })
-            }
-
-
-            // try {
-            //     await fetch(urlTwo).then(res=>res.json()).then(data=>{console.log("second",data);totsupply=data.result;return data;})
-                               
-            // } catch (err){
-            //     return res.status(500).json({ error: 'failed to load data' })
-            // }
-
-            // console.log("1",price)
-            // console.log("2",totsupply)
-
-
-            // try {
-            //     const result=  fetch(urlThree)
-            //     console.log(result);
-            //     res.status(200).json({ result })
-                
-            // } catch (err){
-            //     res.status(500).json({ error: 'failed to load data' })
-            // }
-
            
-        //     fetch("https://api.pancakeswap.info/api/v2/tokens/"+coin.contractaddress)
-        //     .then((response)=>response.json())
-        //     .then((data)=>{
-        //         price=data.data.price;
-        //         //console.log("p",price);
-
-        //         fetch("https://api.bscscan.com/api?module=stats&action=tokenCsupply&contractaddress="+coin.contractaddress + "&apikey="+apikey)
-        //         .then((response)=>response.json())
-        //         .then((data)=>{
-        //             totsupply=data.result; 
-        //             //console.log("g",totsupply);
-
-        //               fetch("https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress="+ coin.contractaddress + "&address="+ caddress + "&tag=latest&apikey=" + apikey)    
-        //                 .then((response)=>response.json())
-        //                 .then((data)=>{
-        //                     deadcoin=data.result;
-        //                     dval=Number(coin.divideval)
-        //                     console.log("dd",coin.divideval)
-        //                     const mcap=(parseFloat(totsupply/dval)-parseFloat(deadcoin/dval))*parseFloat(price);
-        //                     mc=numFormatter(mcap);
-        //                     db.collection('coinlist').updateOne({"contractaddress":coin.contractaddress},
-        //                     {$set:{"price":price,"marketcap":mc}},{ upsert: false});
-        //                //res.status(200).json({message:"All Updated"})
-        //         }).catch((e)=>console.log("Error 3"))
-        //     }).catch((e)=>{console.log("error 2")})
-        //         .catch((e)=>{
-        //             console.log("error 1") 
-        //         })
-               
-                
-        //         })
-        //         //res.status(201).json({coinli:documents})
-        // })
+            (function(i){
+                setTimeout(async function(){
+                    let price=0;
+                    let totsupply=0;
+                    let mc=0;
+                    let deadcoin=0;
+                    let dval=0;
+                    let csupply=0;
+                    
+                    const urlOne="https://api.pancakeswap.info/api/v2/tokens/"+documents[i].contractaddress;
+                    const urlTwo="https://api.bscscan.com/api?module=stats&action=tokenCsupply&contractaddress="+documents[i].contractaddress + "&apikey="+apikey;
+                    const urlThree="https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress="+ documents[i].contractaddress + "&address="+ caddress + "&tag=latest&apikey=" + apikey;
        
-      
-    })
-}catch {
+                   
+                    const panprice=await getUrlValue(urlOne);
+                              try{
+                                    price=parseFloat(panprice.data.price);
+                                } catch {
+                                    price=0;
+                                }
+                    const totSupplydata=  await getTotalSupply(urlTwo);
+                                try{
+                                    totsupply=parseInt(totSupplydata.result);
+                                } catch {
+                                    totsupply=0;
+                                }
+                    const deadSupplydata=  await getDeadSupply(urlThree);
+                                try{
+                                    deadcoin=parseInt(deadSupplydata.result);
+                                } catch {
+                                    deadcoin=0;
+                                }
+                    dval=Number(documents[i].divideval);
+                    const mcap=(parseFloat(totsupply/dval)-parseFloat(deadcoin/dval))*parseFloat(price);
+                    mc=numFormatter(mcap);            
+                    db.collection('coinlist').updateOne({"contractaddress":documents[i].contractaddress},
+                                          {$set:{"price":price,"marketcap":mc}},{ upsert: false});
+                   console.log(`{${documents[i].coinname} price: ${price} TotalSupply: ${totsupply} deadSupply:${deadcoin} mcap:${mcap} mc:${mc}`)                  
+
+                }, 3000 * (i + 1));
+            })(i);
+        }
+
+        
+ }
+catch {
         res. status(500).json({message:'Unable to get documents'})
-    }
+  }
     
    
    
  }
 
-// async function getUrlValue(url) {
-//     try {
-//         const result=await getUrlValue(url);
-//         console.log("hh",result)
-//     } catch (err){
-//         res.status(500).json({ error: 'failed to load data' })
-//     }
+//  const asyncTimeout = (ms) => {
+//     return new Promise((resolve) => {
+//       setTimeout(resolve, ms);
+//     });
+//   };
 
+
+
+async function getUrlValue(url) {
+    
+    try {
+        const documents=await axios.get(url);
+        let data=documents.data;
+        return data;
+    } catch (err){
+        res.status(500).json({ error: 'failed to Pancake Price Data' })
+    }
    
-// }
+}
+
+async function getTotalSupply(url) {
+    
+        try {
+            const documents=await axios.get(url);
+            let data=documents.data;
+            return data;           
+        } catch (err){
+            res.status(500).json({ error: 'failed to load data' })
+        }
+     
+}
+
+async function getDeadSupply(url) {
+    
+    try {
+        const documents=await axios.get(url);
+        let data=documents.data;
+        return data;           
+    } catch (err){
+        res.status(500).json({ error: 'failed to load data' })
+    }
+ 
+}
  
 
 //  function convertToInternationalCurrencySystem (labelValue) {

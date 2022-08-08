@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Bars} from  'react-loader-spinner'
 import ReCAPTCHA from "react-google-recaptcha";
 import ReactModal from "react-modal";
-
+import Image from 'next/image';
 
 function PromotedRow(props){
 
@@ -50,7 +50,7 @@ function PromotedRow(props){
 
    //console.log("kkC",props.voteloading);
    
-   },[props.vote])
+   },[props.vote,props.voteloading])
 
  
 
@@ -71,7 +71,10 @@ function PromotedRow(props){
     
       <tr   className= {isoddnum ? 'bg-lightgrey text-txtborderColor' : ' bg-bodygray  text-txtborderColor'} >
     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium ">{props.rank}</td>
-    <td className="text-sm  font-light px-6 py-4 whitespace-nowrap"><Link href={`/${props.id}`}><a>{props.coinname}</a></Link></td>
+    <td className="text-sm  font-light px-6 py-4 whitespace-nowrap"><Link href={`/${props.id}`}>
+    <a> {props.coinname}</a></Link></td>
+    {/* <Image  src={props.networkchain==="BNB"?"/img/binance.png":"/img/ethereum.png"} alt="No" height={30} width={30} /> */}
+
     <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.price}</td>
     <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.mcap}</td>
     <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.launchdate}</td>

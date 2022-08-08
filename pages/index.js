@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import CoinList from '../components/coinlist/coin-list';
 import PaginatedItems from '../components/coinlist/pagination';
 import SecondPage from '../components/coinlist/secondpagination';
-
+import Link from 'next/link';
 import Image from 'next/image';
 import Slideer from '../components/coinlist/slider-akash'
 import Script from 'next/script';
@@ -72,6 +72,7 @@ export default  function Home() {
             mcap:data.coinlist[key].marketcap,
             vote:data.coinlist[key].votes,
             launchdate:data.coinlist[key].launchdate,
+            networkchain:data.coinlist[key].networkchain,
            }
         )
       } 
@@ -102,9 +103,9 @@ useEffect(()=>{
   },[])
 
   useEffect(()=>{ 
-   
    getData(ispagedata);
-   },[isVote])
+   
+   },[isVote,isPromoVote])
 
 
 
@@ -128,10 +129,22 @@ useEffect(()=>{
       if(pno==="allcoin"){
         setVote(true);
       } else if (pno==="procoin"){
+        //setVote(true);
         setPromoVote(true);
       }
        //console.log(data);
-      data.message==='added' ? console.log("Data Added"): console.log("Data not Added")});
+       //console.log("ptro",isPromoVote);
+      data.message==='added' ? console.log("Data Added"): console.log("Data not Added");
+      
+      if(!isVote){
+        setVote(true);
+      }
+      if(!isPromoVote){
+        setPromoVote(true);
+      }
+    
+      
+    });
     setCount(count+1)
     
 
@@ -142,6 +155,7 @@ useEffect(()=>{
  // SetIsLoading(false);
   fetch(process.env.NEXT_PUBLIC_INDIVIDUAL_VOTE).then((response)=>response.json())
   .then((data)=>{//console.log("nnn",data);
+  
     for (const key in data.indcoin){
        todayCoin.push(
          { id:data.indcoin[key]._id,
@@ -154,6 +168,7 @@ useEffect(()=>{
          // data.indcoin[key]._id
           daysago:data.indcoin[key].coinlistdoc[0].daysago,
           launchdate:data.indcoin[key].coinlistdoc[0].launchdate,
+          networkchain:data.indcoin[key].coinlistdoc[0].networkchain,
          }
       )
     } 
@@ -222,31 +237,31 @@ and Dapp development services" />
        <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
 
       
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-53VS4MKY3B" strategy="afterInteractive"/>
+        {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=G-53VS4MKY3B" strategy="afterInteractive"/>
         <Script id="google-analytics" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments)}
           gtag('js', new Date());
 
           gtag('config', 'G-53VS4MKY3B');`}
-        </Script>
+        </Script> */}
 
         <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8775528236593052"
      crossorigin="anonymous"></Script>
 
       </Head>
         <div className='text-center pt-10'>
-        {topbanner.adimage? <Image  src={topbanner.adimage} alt="no Image" width={900} height={90}/>:null}
+        {topbanner.adimage? <Link href={topbanner.adlink}><a target="_blank" rel="noreferrer noopener"><Image  src={topbanner.adimage} alt="no Image" width={900} height={90}/></a></Link>:null}
         </div>
        
        <CoinList  data={promoteddata} evote={updatevote} voteloading={isPromoVote} votechange={setPromoVote}/>
       
       <div className='max-w-6xl flex flex-row flex-wrap  mx-auto'>
       <div className='basis-1/2 text-center pt-10'>
-        {midleft.adimage?<Image  src={midleft.adimage} alt="no Image" width={320} height={100}/>:null}
+      {midleft.adimage?<Link href={midleft.adlink}><a target="_blank" rel="noreferrer noopener"><Image  src={midleft.adimage} alt="no Image" width={320} height={100}/></a></Link>:null}
         </div>
         <div className='basis-1/2 text-center pt-10'>
-       {midright.adimage?<Image  src={midright.adimage} alt="no Image" width={320} height={100}/>:null}
+       {midright.adimage?<Link href={midright.adlink}><a target="_blank" rel="noreferrer noopener"><Image  src={midright.adimage} alt="no Image" width={320} height={100}/></a></Link>:null}
         </div>
       </div>
        
@@ -255,7 +270,7 @@ and Dapp development services" />
     <Slideer nftCurrentData={nftCurrentData} />
 
     <div className='text-center py-12'>
-     {bottombanner.adimage?<Image  src={bottombanner.adimage} alt="no Image" width={900} height={90}/>:null}
+     {bottombanner.adimage?<Link href={bottombanner.adlink}><a target="_blank" rel="noreferrer noopener"><Image  src={bottombanner.adimage} alt="no Image" width={900} height={90}/></a></Link>:null}
         </div>
      
     {/* Paginated items for Today Data*/} 

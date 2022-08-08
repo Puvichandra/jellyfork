@@ -12,6 +12,11 @@ const slider = (props) => {
         const nftthreedata=nftonedata.concat(nfttwodata)
     
   return (
+  <>
+    <div className="max-w-6xl mx-auto text-2xl lg:text-4xl  text-txtborderColor font-poppins  pl-5 pb-4 pt-10">
+    Featured NFTs
+
+    </div>
     <div className={classes.slider}>
         <div className={classes.slide__track}>
 
@@ -28,6 +33,7 @@ const slider = (props) => {
         </div>
         
     </div>
+    </>
   )
 }
 

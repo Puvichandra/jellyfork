@@ -138,8 +138,8 @@ async function handler(req,res) {
     try {
         const db=client.db();
         
-        const documents = await db.collection('coinlist').find({activateCoin:true,activateCoin:"true"}, {projection:{"coinname":1, "marketcap":1, "price":1, "votes":1,  "ispromoted":1, "launchdate":1}} ).sort({"votes":-1,"coinname":-1}).toArray();
-        const promoteddocument = await db.collection('coinlist').find({ispromoted:true , ispromoted:"true"}, {projection:{"coinname":1, "marketcap":1, "price":1, "votes":1,  "ispromoted":1,"launchdate":1}} ).sort({"votes":-1}).toArray();
+        const documents = await db.collection('coinlist').find({activateCoin:true,activateCoin:"true"}, {projection:{"coinname":1, "marketcap":1, "price":1, "votes":1,  "ispromoted":1, "launchdate":1,"networkchain":1}} ).sort({"votes":-1,"coinname":-1}).toArray();
+        const promoteddocument = await db.collection('coinlist').find({ispromoted:true , ispromoted:"true"}, {projection:{"coinname":1, "marketcap":1, "price":1, "votes":1,  "ispromoted":1,"launchdate":1,"networkchain":1}} ).sort({"votes":-1}).toArray();
         res.status(201).json({coinlist:documents,promoted:promoteddocument})
        //console.log("Chandra",promoteddocument)
     } catch {

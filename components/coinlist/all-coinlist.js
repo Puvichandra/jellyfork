@@ -41,7 +41,7 @@ function AllCoinList(props){
       {promotedCoin.map((coin)=><li key={coin._id}  
       className={`${coin.activateCoin? "text-txtborderColor":"text-red-600"} font-poppins font-bold py-2 text-lg` } 
 
-      onClick= {()=>{props.evote(coin._id); return false;}}>{coin.ispromoted? `${coin.coinname}☀️`:coin.coinname}</li> )}
+      onClick= {()=>{props.evote(coin._id); return false;}}>{coin.ispromoted===true||coin.ispromoted==="true"? `${coin.coinname}☀️`:coin.coinname}</li> )}
      
       
       </ul>
