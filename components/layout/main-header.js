@@ -44,7 +44,7 @@ function MainHeader(){
                                    Market Place</a></Link> 
                                    
                              
-                                <Link  href="/contact/contact-form"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey  dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}}>
+                                  <Link  href="/contact/contact-form"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey  dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}}>
                                   Contact Us</a></Link>
 
                                   <Search />
@@ -99,11 +99,15 @@ function MainHeader(){
                 Dapp Maker
                 </a></Link>
 
-                <Link  href="/chihuavotepage"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}} >
-                                   Burn Poll</a></Link> 
-                                   
-                <Link  href="/marketplace"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}} >
-                Market Place</a></Link> 
+                <Link  href="/chihuavotepage"><a className="text-white font-poppins dark:text-white  hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium block">
+                Burn Poll
+                </a></Link>
+
+                <Link  href="/marketplace"><a className="text-white font-poppins dark:text-white  hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium block">
+                Market Place
+                </a></Link>
+
+            
 
                 <Link href="/contact/contact-form"><a className="text-white  font-poppins dark:text-white  hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium  block">
                 Contact Us

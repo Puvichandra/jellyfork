@@ -87,7 +87,7 @@ export default function Chihuarow(props) {
         <tr   className= {isoddnum ? 'bg-lightgrey text-txtborderColor' : ' bg-bodygray  text-txtborderColor'} >
       <td className="pl-2 xl:px-6 py-4  text-sm font-medium ">{props.rank}</td>
       <td className="text-sm  font-light pl-2 xl:px-6 py-4 "><Link href={`/${props.id}`}><a>{props.coinname}</a></Link></td>
-      <td className="text-sm after:font-light pl-2 xl:px-6 py-4  text-black"><input className="w-28 md:w-auto" id={props.id} type="text"/></td>
+      <td className="text-sm after:font-light pl-2 xl:px-6 py-4  text-black"><input className="w-28 md:w-auto" id={props.id} type="text" placeholder="@Username"/></td>
       <td className="text-sm  font-light pl-2 xl:px-6 py-4 ">      
         {/* <Button onClick={handleClick}>{!isLoading? <Bars color='white' height="30" width="30" ariaLabel='loading'/>:`🚀${props.vote}`}</Button> */}
        {/* <Button className="px-2" onClick={()=> {checkValid()}}>{isLoading? <Bars color='white' height="30" width="30" ariaLabel='loading'/>:`${props.vote}`}</Button> */}

@@ -39,9 +39,12 @@ export default function Chihuavotecomp(props) {
 <div className=" text-lg lg:text-4xl  text-white font-poppins pl-10 py-4 inline">
 🔥200,000$ BURN CONTEST🔥
 </div>
-<div className=" text-lg lg:text-4xl  text-txtborderColor font-poppins pl-10 py-4 inline">
-<p className="text-lg lg:text-xl px-10">Our smart contract will automatically buy and burn the leading token in the last 24hrs for each The Chihuahua Club NFT Minted , which will value 200,000$ when the entire collection is sold out!</p>
-<small className="text-lg lg:text-xl px-10">The vote will not be counted if the user is not a member of <span><a className="text-red-400" href="https://t.me/TheChihuahuaClub">@TheChihuahuaClub</a></span></small>
+<div className=" text-md lg:text-4xl  text-txtborderColor font-poppins pl-10 py-4 inline">
+<p className="text-md px-4 lg:text-xl xl:px-10 pb-2">Our smart contract will automatically buy and burn the leading token in the last 24hrs for each The Chihuahua Club NFT Minted , which will value 200,000$ when the entire collection is sold out!</p>
+<div className="px-4 xl:px-10">
+<small className="text-md lg:text-xl ">The vote will not be counted if the user is not a member of <span><a className="text-red-400" href="https://t.me/TheChihuahuaClub">@TheChihuahuaClub</a></span></small>
+</div>
+
 </div>
 {isLoad?<div className="inline-block mt-10 ml-10"><ThreeDots color='white' height="50" width="50" ariaLabel='loading'/></div>:null}
 </div>
