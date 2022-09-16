@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useEffect, useState } from "react";
 import { Watch } from  'react-loader-spinner';
 import  Axios  from "axios";
+import AdminAddIndividualVote from "./admin-add-indvote";
 
 
 function AdminListCoinForm(props){
@@ -35,7 +36,7 @@ function AdminListCoinForm(props){
   
 
     
- 
+
 
 
  function updateCoindata()
@@ -212,6 +213,7 @@ setimagedata({file:{cimage}, imageblob:''})
               
               <option value="true">Promote</option>
               <option value="false">Demote</option>
+            
               
             </select>
             </div>
@@ -488,6 +490,9 @@ setimagedata({file:{cimage}, imageblob:''})
    
     </div>
             
+          </div>
+          <div>
+          <AdminAddIndividualVote  contractAddress={cid}/>
           </div>
          
         </div>

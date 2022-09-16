@@ -15,6 +15,8 @@ function AdminConfigPage(){
     const [count,setCount]=useState(0);
     const [rrset, setrrset]=useState(false);
     const [singledataloading, setsingledataloading]=useState(false)
+
+ 
     
 
     function  updateMarketCap(){

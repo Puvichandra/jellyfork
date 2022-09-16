@@ -21,12 +21,12 @@ function MainHeader(){
                         <div className="hidden lg:block">
                             <div className="ml-10 flex items-center space-x-40 md:space-x-40 sm:space-x-20 ">
                             
-                                {/* <Link href="/"><a className="flex-shrink-0" >
-                                <Image className='relative z-30 inline object-cover w-12 h-12 border-20 border-white rounded-full' src="/img/main1.jpg" alt="Workflow" width={70} height={70}/>
-                                </a></Link> */}
+                                 <Link href="/"><a className="flex-shrink-0" >
+                                <Image  src="/img/partnerlogo.png" alt="Workflow" width={250} height={70}/>
+                                </a></Link> 
 
-                                <Link href="/"><a className="text-white font-poppins dark:hover:text-white px-3 py-2 rounded-md text-4xl font-bold -mt-2 xl:text-4xl xl:px-0"  >
-                                    jellyfork<span className="text-4xl text-txtred">.</span></a></Link>
+                                {/* <Link href="/"><a className="text-white font-poppins dark:hover:text-white px-3 py-2 rounded-md text-4xl font-bold -mt-2 xl:text-4xl xl:px-0"  >
+                                    jellyfork<span className="text-4xl text-txtred">.</span></a></Link> */}
                             
                                 <Link  href="/"><a className="text-txtborderColor font-poppins  hover:bg-lightgrey dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md"  >
                                     Home </a></Link>
@@ -36,6 +36,12 @@ function MainHeader(){
 
                                    <Link  href="/dappmaker"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}} >
                                    Dapp Maker</a></Link>
+
+                                   <Link  href="/chihuavotepage"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}} >
+                                   Burn Poll</a></Link> 
+
+                                   <Link  href="/marketplace"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}} >
+                                   Market Place</a></Link> 
                                    
                              
                                 <Link  href="/contact/contact-form"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey  dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}}>
@@ -59,8 +65,13 @@ function MainHeader(){
                   
                     <div className="flex w-full flex-row lg:hidden items-center justify-between mt-10 pb-5">
                         <div className="items-start">
-                        <a className="text-white font-poppins hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-2xl font-bold -mt-2"  >
-                                    jellyfork<span className="text-4xl text-txtred">.</span></a>
+
+                        {/* <a className="text-white font-poppins hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-2xl font-bold -mt-2"  >
+                                    jellyfork<span className="text-4xl text-txtred">.</span></a> */}
+                                    <Link href="/"><a className="flex-shrink-0" >
+                                <Image  src="/img/partnerlogo.png" alt="Workflow" width={180} height={50}/>
+                                </a></Link> 
+    
                          
                         </div>
                       <div >
@@ -87,7 +98,13 @@ function MainHeader(){
                 <Link  href="/dappmaker"><a className="text-white font-poppins dark:text-white  hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium block">
                 Dapp Maker
                 </a></Link>
-  
+
+                <Link  href="/chihuavotepage"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}} >
+                                   Burn Poll</a></Link> 
+                                   
+                <Link  href="/marketplace"><a className="text-txtborderColor  font-poppins dark:text-white  hover:bg-lightgrey dark:hover:text-white px-3 py-2 rounded-md text-lg font-medium xl:text-sm 2xl:text-md" style={{marginLeft:"auto"}} >
+                Market Place</a></Link> 
+
                 <Link href="/contact/contact-form"><a className="text-white  font-poppins dark:text-white  hover:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium  block">
                 Contact Us
                </a></Link>

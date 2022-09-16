@@ -15,7 +15,7 @@ function Layout(props){
 
     <div>
   <MainHeader/>
-    <main className="bg-bodygray">
+    <main className="bg-bodygray" >
           {props.children}
     </main>
     <FooterComponent/> 

@@ -97,9 +97,9 @@ function SecPaginatedItems(props) {
                  <th scope="col" className="hidden md:table-cell  text-sm font-medium  px-6 py-4 text-left">
                    Price
                  </th>
-                 <th scope="col" className="hidden md:table-cell text-sm font-medium  px-6 py-4 text-left">
+                 {/* <th scope="col" className="hidden md:table-cell text-sm font-medium  px-6 py-4 text-left">
                    Market Cap
-                 </th>
+                 </th> */}
                  <th scope="col" className="hidden md:table-cell text-sm font-medium  px-6 py-4 text-left">
                    Launch Date
                  </th>

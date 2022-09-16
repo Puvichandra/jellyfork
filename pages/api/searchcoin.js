@@ -22,7 +22,7 @@ if(req.method==='GET'){
     try {
         const db=client.db();
         
-        const documents = await db.collection('coinlist').find({}, {projection:{"coinname":1}} ).sort({"coinname":-1}).toArray();
+        const documents = await db.collection('coinlist').find({activateCoin:true,activateCoin:"true"}, {projection:{"coinname":1}} ).sort({"coinname":-1}).toArray();
         res.status(201).json({coinlist:documents})
        
     } catch {

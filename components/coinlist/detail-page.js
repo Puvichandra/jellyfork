@@ -94,7 +94,7 @@ function DetailPageCoin(props){
 <div className="py-5 pl-5 ">
 <p className='text-2xl lg:text-4xl  text-txtborderColor font-poppins  font-bold pl-10 pb-2'>Stats</p>
 <p className="py-2 text-txtborderColor text-xl font-poppins">Price: ${props.data[0].price}</p>
-<p className="py-2 text-txtborderColor text-xl font-poppins">Market Cap: {props.data[0].marketcap}</p>
+{/* <p className="py-2 text-txtborderColor text-xl font-poppins">Market Cap: {props.data[0].marketcap}</p> */}
 <p className="py-2 text-txtborderColor text-xl font-poppins">Launch Date: {props.data[0].launchdate}</p>
 <p className="py-2 text-txtborderColor text-xl font-poppins">Total Votes: {props.data[0].votes}</p>
 <p className="py-5 text-txtborderColor font-poppin">Have you voted?</p>

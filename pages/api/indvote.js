@@ -1,6 +1,5 @@
 import { connectDatabse } from "../../helpers/db-utils";
 
-connectDatabse
 
 async function handler(req,res) {
     let client;

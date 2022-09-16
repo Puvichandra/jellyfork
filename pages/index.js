@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Slideer from '../components/coinlist/slider-akash'
 import Script from 'next/script';
+import Popup  from '../components/popup/popup';
 
 
 
@@ -250,6 +251,8 @@ and Dapp development services" />
      crossorigin="anonymous"></Script>
 
       </Head>
+
+      <Popup />
         <div className='text-center pt-10'>
         {topbanner.adimage? <Link href={topbanner.adlink}><a target="_blank" rel="noreferrer noopener"><Image  src={topbanner.adimage} alt="no Image" width={900} height={90}/></a></Link>:null}
         </div>
@@ -306,4 +309,3 @@ and Dapp development services" />
 
   
 }
-

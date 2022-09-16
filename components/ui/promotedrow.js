@@ -47,12 +47,15 @@ function PromotedRow(props){
         setIsoddNumber(true);
     }
    setIsLoading(props.voteloading);
-
+   //clearCacheData();
    //console.log("kkC",props.voteloading);
    
    },[props.vote,props.voteloading])
 
  
+
+
+
 
 
     return  (
@@ -75,11 +78,11 @@ function PromotedRow(props){
     <a> {props.coinname}</a></Link></td>
     {/* <Image  src={props.networkchain==="BNB"?"/img/binance.png":"/img/ethereum.png"} alt="No" height={30} width={30} /> */}
 
-    <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.price}</td>
-    <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.mcap}</td>
+    <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{parseFloat(props.price).toFixed(5)=="0.00010"?"-":parseFloat(props.price).toFixed(5)}</td>
+    {/* <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.mcap}</td> */}
     <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.launchdate}</td>
     <td className="text-sm  font-light px-6 py-4 whitespace-nowrap">      
-      <Button onClick={()=>{setvoteid(props.id);handleClick()}}>{!isLoading && props.id===voteid? <Bars color='white' height="30" width="30" ariaLabel='loading'/>:`🚀${props.vote}`}</Button>
+      <Button onClick={()=>{;setvoteid(props.id);handleClick()}}>{!isLoading && props.id===voteid? <Bars color='white' height="30" width="30" ariaLabel='loading'/>:`🚀${props.vote}`}</Button>
       {/* //<Button onClick={handleClick}>🚀{props.vote}</Button> */}
     </td>
   </tr> 

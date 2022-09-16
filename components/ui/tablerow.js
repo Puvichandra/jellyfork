@@ -69,8 +69,8 @@ function TableRow(props){
       <tr   className= {isoddnum ? 'bg-lightgrey text-txtborderColor' : ' bg-bodygray  text-txtborderColor'} >
     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium ">{props.rank}</td>
     <td className="text-sm  font-light px-6 py-4 whitespace-nowrap"><Link href={`/${props.id}`}><a>{props.coinname}</a></Link></td>
-    <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.price}</td>
-    <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.mcap}</td>
+    <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{parseFloat(props.price).toFixed(5)=="0.00010"?"-":parseFloat(props.price).toFixed(5)}</td>
+    {/* <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.mcap}</td> */}
     <td className="hidden md:table-cell text-sm  font-light px-6 py-4 whitespace-nowrap">{props.launchdate}</td>
     <td className="text-sm  font-light px-6 py-4 whitespace-nowrap">      
       {/* <Button onClick={handleClick}>{!isLoading? <Bars color='white' height="30" width="30" ariaLabel='loading'/>:`🚀${props.vote}`}</Button> */}
