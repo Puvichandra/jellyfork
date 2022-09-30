@@ -60,7 +60,7 @@ const carddata = [
     imgURL4:"https://res.cloudinary.com/dp9yoy7js/image/upload/v1659600249/Dapp%20Maker/dashboard4_qgsibh.webp",
     description: "Build a beautiful and unique Dashboard",
     beforePrice: "997$",
-    afterPrice: "299$",
+    afterPrice: "399$",
     timePeriod: '3 - 4 Days',
     link: 'https://t.me/Midoxjelly'
   },
@@ -73,7 +73,7 @@ const carddata = [
     imgURL4:"https://res.cloudinary.com/dp9yoy7js/image/upload/v1659600243/Dapp%20Maker/staking4_g9p615.webp",
     description: "Build a NFT staking contract and a beautiful staking Dapp",
     beforePrice: "2247$",
-    afterPrice: "699$",
+    afterPrice: "799$",
     timePeriod: '5 - 6 Days',
     link: 'https://t.me/Midoxjelly'
   },
@@ -99,7 +99,7 @@ const carddata = [
     imgURL4:"https://res.cloudinary.com/dp9yoy7js/image/upload/v1659603305/Dapp%20Maker/marketplace4_byem3g.webp",
     description: "Build a beautiful NFT MarketPlace",
     beforePrice: "2457%",
-    afterPrice: "899$",
+    afterPrice: "1199$",
     timePeriod: '6 - 8 Days',
     link: 'https://t.me/Midoxjelly'
   },
